@@ -116,9 +116,15 @@ class Track:
                 canvas.create_rectangle(x, y, x + mult, y - mult, fill=color)
                 x += mult
             y = y - mult
-        racer = canvas.create_rectangle(self.car.position.x * mult, self.car.position.y * mult,
-                                        (self.car.position.x * mult) + mult, (self.car.position.y * mult) + mult,
-                                        fill="yellow")
+        try:
+            racer = canvas.create_rectangle(self.car.position.x * mult, self.car.position.y * mult,
+                                            (self.car.position.x * mult) + mult, (self.car.position.y * mult) + mult,
+                                            fill="yellow")
+        except AttributeError:
+            self.car.seek_starting_line()
+            racer = canvas.create_rectangle(self.car.position.x * mult, self.car.position.y * mult,
+                                            (self.car.position.x * mult) + mult, (self.car.position.y * mult) + mult,
+                                            fill="yellow")
         canvas.pack()
         return window, canvas, racer
 

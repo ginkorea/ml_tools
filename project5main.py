@@ -115,17 +115,17 @@ def learn_course_until(track, total_laps, animate=False, difficult=False, new_dr
     return lap_speeds
 
 
-def learn_world(iterations=10000, complete=False):
+def learn_world(iterations=10000, complete=False, animate=False):
     """program to produce the full set of experiments in the paper
     set complete to True to run the difficult crash setting test"""
     q, s = init_env()
     dq, ds = init_env()
-    learn_course_until(q.tracks[0], iterations, animate=False)
-    learn_course_until(s.tracks[0], iterations, animate=False)
-    learn_course_until(q.tracks[1], iterations, animate=False)
-    learn_course_until(s.tracks[1], iterations, animate=False)
-    learn_course_until(q.tracks[2], iterations, animate=False)
-    learn_course_until(s.tracks[2], iterations, animate=False)
+    learn_course_until(q.tracks[0], iterations, animate=animate)
+    learn_course_until(s.tracks[0], iterations, animate=animate)
+    learn_course_until(q.tracks[1], iterations, animate=animate)
+    learn_course_until(s.tracks[1], iterations, animate=animate)
+    learn_course_until(q.tracks[2], iterations, animate=animate)
+    learn_course_until(s.tracks[2], iterations, animate=animate)
     if complete:
         learn_course_until(dq.tracks[2], 10000, animate=False, difficult=True)
         learn_course_until(ds.tracks[2], 10000, animate=False, difficult=True)
